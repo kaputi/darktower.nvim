@@ -2,158 +2,158 @@ return {
   at_comment = {
     link = 'Comment',
   },
-  TSError = {
+  at_Error = {
     bg = '-',
     fg = 'bright_red',
     mod = { 'undercurl' },
   },
-  TSPunctDelimiter = {
+  at_PunctDelimiter = {
     fg = 'white',
   },
-  TSPunctBracket = {
+  at_PunctBracket = {
     fg = 'white',
   },
-  TSPunctSpecial = {
+  at_PunctSpecial = {
     fg = 'white',
   },
-  TSConstant = {
+  at_Constant = {
     fg = 'yellow',
   },
-  TSConstBuiltin = {
+  at_ConstBuiltin = {
     fg = 'blue',
   },
-  TSConstMacro = {
+  at_ConstMacro = {
     fg = 'cyan',
   },
-  TSStringRegex = {
+  at_StringRegex = {
     fg = 'yellow',
   },
-  TSString = {
+  at_String = {
     fg = 'light_green',
   },
-  TSStringEscape = {
+  at_StringEscape = {
     fg = 'light_yellow',
   },
-  TSCharacter = {
+  at_Character = {
     fg = 'yellow',
   },
-  TSNumber = {
+  at_Number = {
     fg = 'light_green',
   },
-  TSBoolean = {
+  at_Boolean = {
     fg = 'blue',
   },
-  TSFloat = {
+  at_Float = {
     fg = 'light_green',
   },
-  TSAnnotation = {
+  at_Annotation = {
     fg = 'yellow',
   },
-  TSAttribute = {
+  at_Attribute = {
     fg = 'cyan',
   },
-  TSNamespace = {
+  at_Namespace = {
     fg = 'cyan',
   },
-  TSFuncBuiltin = {
+  at_FuncBuiltin = {
     fg = 'yellow',
   },
-  TSFunction = {
+  at_Function = {
     fg = 'yellow',
   },
-  TSFuncMacro = {
+  at_FuncMacro = {
     fg = 'yellow',
   },
-  TSParameter = {
+  at_Parameter = {
     fg = 'light_blue',
   },
-  TSParameterReference = {
+  at_ParameterReference = {
     fg = 'light_blue',
   },
-  TSMethod = {
+  at_Method = {
     fg = 'yellow',
   },
-  TSField = {
+  at_Field = {
     fg = 'light_blue',
   },
-  TSProperty = {
+  at_Property = {
     fg = 'light_blue',
   },
-  TSConstructor = {
+  at_Constructor = {
     fg = 'cyan',
   },
-  TSConditional = {
+  at_Conditional = {
     fg = 'purple',
   },
-  TSRepeat = {
+  at_Repeat = {
     fg = 'purple',
   },
-  TSLabel = {
+  at_Label = {
     fg = 'light_blue',
   },
-  TSKeyword = {
+  at_Keyword = {
     fg = 'yellow',
   },
-  TSKeywordFunction = {
+  at_KeywordFunction = {
     fg = 'purple',
   },
-  TSKeywordOperator = {
+  at_KeywordOperator = {
     fg = 'blue',
   },
-  TSOperator = {
+  at_Operator = {
     fg = 'white',
   },
-  TSException = {
+  at_Exception = {
     fg = 'purple',
   },
-  TSType = {
+  at_Type = {
     fg = 'cyan',
   },
-  TSTypeBuiltin = {
+  at_TypeBuiltin = {
     fg = 'blue',
   },
-  TTSStructure = {
+  Tat_Structure = {
     bg = 'unsure',
     fg = 'black',
   },
-  TSInclude = {
+  at_Include = {
     fg = 'purple',
   },
-  TSVariable = {
+  at_Variable = {
     fg = 'light_blue',
   },
-  TSVariableBuiltin = {
+  at_VariableBuiltin = {
     fg = 'light_blue',
   },
-  TSText = {
+  at_Text = {
     fg = 'yellow',
   },
-  TSStrong = {
+  at_Strong = {
     bg = 'unsure',
     fg = 'black',
   },
-  TSEmphasis = {
+  at_Emphasis = {
     bg = 'unsure',
     fg = 'black',
   },
-  TSUnderline = {
+  at_Underline = {
     bg = 'unsure',
     fg = 'black',
   },
-  TSTitle = {
+  at_Title = {
     fg = 'yellow',
   },
-  TSLiteral = {
+  at_Literal = {
     bg = 'unsure',
     fg = 'black',
   },
-  TSURI = {
+  at_URI = {
     fg = 'bright_green',
   },
-  TSTag = {
+  at_Tag = {
     fg = 'blue',
   },
-  TSTagDelimiter = {
+  at_TagDelimiter = {
     fg = 'red',
   },
 }
