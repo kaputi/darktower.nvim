@@ -4,26 +4,6 @@ local hl = vim.api.nvim_set_hl
 
 local theme = require('darktower.theme')
 
--- local theme = {
---   hi = {
---     Comment = {
---       bg = 'bg',
---       fg = 'fg',
---       mod = { 'italic', 'underline' },
---     },
---   },
---   palette = {
---     dark = {
---       bg = '#000000',
---       fg = '#ffffff',
---     },
---     light = {
---       fg = '#ffffff',
---       bg = '#000000',
---     },
---   },
--- }
-
 local updateHighlight = function(hi, values)
   local newValues = {}
   local update = false
@@ -44,6 +24,8 @@ local updateHighlight = function(hi, values)
         theme.hi[hi][k] = v
       end
     end
+  else
+    theme.hi[hi] = newValues
   end
 end
 
@@ -85,7 +67,8 @@ local set_highlights = function(mode)
       end
     end
 
-    hl(0, hi, hi_obj)
+    local hi_name = hi:gsub('at_', '@')
+    hl(0, hi_name, hi_obj)
   end
 end
 
@@ -107,31 +90,12 @@ M.setup = function(values)
       updatePalette(mode, color, color_value)
     end
   end
-end
 
-M.test = function()
-  -- local opts = {
-  --   Normal = {
-  --     update = true,
-  --     bg = 'post',
-  --   },
-  -- }
-
-  -- local color = {
-  --   dark = {
-  --     red = 'post',
-  --   },
-  --   light = {
-  --     blue = 'post',
-  --   },
-  -- }
-
-  -- M.setup({
-  --   highlights = opts,
-  --   palette = color,
-  -- })
-
-  M.set()
+  if values.dark == false then
+    M.set('light')
+  else
+    M.set()
+  end
 end
 
 M.set = function(mode)

@@ -1,5 +1,5 @@
 return {
-  TSComment = {
+  at_comment = {
     link = 'Comment',
   },
   TSError = {
