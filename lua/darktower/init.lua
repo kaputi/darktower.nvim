@@ -1,48 +1,157 @@
 local M = {}
 
+local hl = vim.api.nvim_set_hl
+
 local theme = require('darktower.theme')
 
+-- local theme = {
+--   hi = {
+--     Comment = {
+--       bg = 'bg',
+--       fg = 'fg',
+--       mod = { 'italic', 'underline' },
+--     },
+--   },
+--   palette = {
+--     dark = {
+--       bg = '#000000',
+--       fg = '#ffffff',
+--     },
+--     light = {
+--       fg = '#ffffff',
+--       bg = '#000000',
+--     },
+--   },
+-- }
+
 local updateHighlight = function(hi, values)
-  if theme[hi] == nil then
-    theme[hi] = values
-    return
-  end
+  local newValues = {}
+  local update = false
 
   for k, v in pairs(values) do
-    theme[hi][k] = v
+    if k == 'update' then
+      update = true
+    else
+      newValues[k] = v
+    end
+  end
+
+  if update == true then
+    if theme.hi[hi] == nil then
+      theme.hi[hi] = newValues
+    else
+      for k, v in pairs(newValues) do
+        theme.hi[hi][k] = v
+      end
+    end
   end
 end
 
-local set_highlights = function()
-  -- for hi, values in pairs(theme) do
-    -- print('------------------------------------')
-    -- print(hi .. ' ::::::::')
-    -- print(vim.inspect(values))
-  -- end
+local updatePalette = function(mode, color, color_value)
+  theme.palette[mode][color] = color_value
+end
 
-  -- print(vim.inspect(defaultTheme))
+local isNone = function(val)
+  if val == 'NONE' or val == 'none' or val == '-' or val == false then
+    return true
+  end
+  return false
+end
+
+local set_highlights = function(mode)
+  local palette
+  if mode == 'light' then
+    palette = theme.palette.light
+  else
+    palette = theme.palette.dark
+  end
+
+  for hi, values in pairs(theme.hi) do
+    local hi_obj = {}
+    for name, type_val in pairs(values) do
+      if isNone(type_val) == true then
+        type_val = 'NONE'
+      end
+      if name == 'mod' and type(type_val) == 'table' then
+        for _, modName in ipairs(type_val) do
+          hi_obj[modName] = true
+        end
+      else
+        if palette[type_val] ~= nil then
+          hi_obj[name] = palette[type_val]
+        else
+          hi_obj[name] = type_val
+        end
+      end
+    end
+
+    hl(0, hi, hi_obj)
+  end
 end
 
 M.setup = function(values)
-  if values.theme == nil then
-    values.theme = {}
+  if values.highlights == nil then
+    values.highlights = {}
   end
 
-  -- for hi, values in pairs(values.theme) do
-    -- updateHighlight(hi,values)
-  -- end
+  if values.palette == nil then
+    values.palette = {}
+  end
 
-  -- vim.cmd('hi clear')
+  for hi, v in pairs(values.highlights) do
+    updateHighlight(hi, v)
+  end
 
-  -- vim.o.background = 'dark'
+  for mode, mode_values in pairs(values.palette) do
+    for color, color_value in pairs(mode_values) do
+      updatePalette(mode, color, color_value)
+    end
+  end
+end
 
-  -- if vim.fn.exists('sytax_on') then
-  --   vim.cmd('syntax reset')
-  -- end
+M.test = function()
+  -- local opts = {
+  --   Normal = {
+  --     update = true,
+  --     bg = 'post',
+  --   },
+  -- }
 
-  -- vim.o.termguicolors = true
+  -- local color = {
+  --   dark = {
+  --     red = 'post',
+  --   },
+  --   light = {
+  --     blue = 'post',
+  --   },
+  -- }
 
-  set_highlights()
+  -- M.setup({
+  --   highlights = opts,
+  --   palette = color,
+  -- })
+
+  M.set()
+end
+
+M.set = function(mode)
+  vim.cmd('hi clear')
+
+  if mode == 'light' then
+    vim.o.background = 'light'
+    vim.g.colors_name = 'darktower-light'
+  else
+    vim.o.background = 'dark'
+    vim.g.colors_name = 'darktower'
+  end
+
+  if vim.fn.exists('syntax_on') then
+    vim.cmd('syntax reset')
+  end
+
+  vim.o.termguicolors = true
+
+  set_highlights(mode)
 end
 
 return M

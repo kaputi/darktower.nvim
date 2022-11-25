@@ -1,3 +1,3 @@
 lua << EOF
-require("darktower").setup({})
+require("darktower").set()
 EOF
